@@ -8,7 +8,7 @@ from nn_instance_PT import NNInstance
 from nn_decoder_PT import NNDecoder
 import random
 
-from exploitation_method_BO import BayesianOptimizer
+from exploitation_methods.exploitation_method_BO import BayesianOptimizer
 
 import sys
 
@@ -25,9 +25,8 @@ brkga_params, _ = load_configuration("./config.conf")
 decoder = NNDecoder(
         instance = instance,
         limits = [(1000,2000), (2000,4000), (2000,6000), (0.000001,0.1), (0,0.001)])
-        #limits = [(5,15), (5,30), (5,45), (0.000001,0.1), (0,0.001)])
 
-EM_BO = BayesianOptimizer(decoder= decoder, e = 0.3, steps= 3, percentage= float(sys.argv[3]))
+EM_BO = BayesianOptimizer(decoder= decoder, e = 0.3, steps = 3, percentage = float(sys.argv[3]))
 
 brkga = BrkgaMpIpr(
         decoder=decoder,
@@ -41,7 +40,7 @@ brkga = BrkgaMpIpr(
 
 brkga.initialize()
 
-for i in range(1, 9):
+for i in range(1, 11):
         print("\n###############################################")
         print(f"Generation {i}")
         print("")
