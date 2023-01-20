@@ -617,6 +617,15 @@ class BrkgaMpIpr:
         return self._current_populations[population_index]
 
     ###########################################################################
+
+    def calculate_population_diversity(self, population_index: int = 0) -> float:
+        """
+        Returns the diversity score for the given population.
+        """
+
+        return self._population_diversity_score(population_index)
+
+    ###########################################################################
     # Optimization (evolutionary / Path-relink) methods
     ###########################################################################
 
@@ -840,15 +849,6 @@ class BrkgaMpIpr:
 
     ###########################################################################
         
-    def _organize_population_by_fitness(self, pop_idx):
-        temp_pop = copy.deepcopy(self._current_populations[pop_idx])
-        temp_idx = 0
-        for val, i in self._current_populations[pop_idx].fitness:
-            temp_pop.chromosomes[temp_idx] = self._current_populations[pop_idx].chromosomes[i]
-            temp_pop.fitness[temp_idx] = (val, temp_idx)
-            temp_idx = temp_idx + 1
-        self._current_populations[pop_idx] = temp_pop
-
     def _distance(self, pop_idx, chromo1_idx, chromo2_idx):
         #Calculate the distance between two chromosomes
 

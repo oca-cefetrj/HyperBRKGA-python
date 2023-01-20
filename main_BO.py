@@ -26,7 +26,7 @@ decoder = NNDecoder(
         instance = instance,
         limits = [(1000,2000), (2000,4000), (2000,6000), (0.000001,0.1), (0,0.001)])
 
-EM_BO = BayesianOptimizer(decoder= decoder, e = 0.3, steps = 3, percentage = float(sys.argv[3]))
+EM_BO = BayesianOptimizer(decoder = decoder, e = 0.3, steps = 3, percentage = float(sys.argv[3]))
 
 brkga = BrkgaMpIpr(
         decoder=decoder,
@@ -62,7 +62,7 @@ for i in range(1, 11):
         print(f"{datetime.now()} - Best score so far: {best_cost}")
         best_chr = brkga.get_best_chromosome()
         print(f"{datetime.now()} - Best chromosome so far: {best_chr}")
-        print(f"{datetime.now()} - Total time so far: {datetime.now() - start}")
+        print(f"{datetime.now()} - Total time so far: {datetime.now() - start}", flush = True)
 
 print("\n###############################################")
 print("Final results:")
